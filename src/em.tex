@@ -1,0 +1,20 @@
+\wde{K-means Distortion}{
+    $$
+    J = \sum^N_{n = 1}\sum^K_{k = 1} r_{nk} \Vert x_n - \mu_k \Vert^2
+    $$
+}
+\wde{K-means Steps}{
+Randomly initialise $\mu_{k = 1,\dots, K}$ $\to$
+ Minimise $J$ with respect to $r_{nk}$ $\to$
+ Minimise $J$ with respect to $\mu_{k}$ $\to$
+ Repeat
+}
+\wde{K-means Solutions}{
+    $$\mu_k = \frac{\sum_n r_{nk} x_n}{\sum_n r_{nk}}, r_{nk} = \mathbb{I}(k = \arg\min_j \Vert x_n - \mu_j \Vert ^2)$$
+}
+\wde{GMM Probabilities}{
+    $$p(z_k = 1) = \pi_k, p(\mathbf{z}) = \prod_{k = 1}^K \pi_k^{z_k}, p(\mathbf{x} \vert \mathbf{z}) = \prod_{k = 1}^K \mathcal{N}(x | \mu_k, \Sigma_k)^{z_k}$$
+}
+\wde{Kullback-Leibler Divergence}{
+    $$KL(p\Vert q) = \mathbb{E}_{x \sim p}\left[\log \frac{p(x)}{q(x)}\right] = \sum_{x \in X} p(x) \log \frac{p(x)}{q(x)}$$
+}
