@@ -1,0 +1,46 @@
+\wde{Classification}{
+    Given a dataset $S$, the goal is to learn a function $h$ that maps 
+    input variables $x$ to $y$, where $y$ is a class label. 
+}
+\wde{Linear Seperability}{
+    A dataset is linearly seperable if there exists a hyperplane that can seperate the data points
+}
+\wde{Training of Classification}{
+    Find parameters $\theta$ such that the zero-one loss is minimised
+}
+\wde{Logistic Regression}{
+    A linear classifier that models the probability of a class label.
+    The model is given by
+    $$
+    p(y|x, \theta) = \sigma(-y\theta^Tx) = \frac{1}{1 + \exp(-y (\dotp{w}{x} + b))}
+    $$
+    where $\sigma$ is the sigmoid function.
+}
+\wde{Maximum Likelihood Estimation (MLE)}{
+    The MLE of the parameters $\theta$ is given by
+    $$
+    \hat \theta = \argmax_\theta \prod_{i=1}^n p(y_i|x_i, \theta)
+    $$
+}
+\wde{Log Likelihood}{
+    The log likelihood is applying log to the MLE
+    to obtain a more numerically stable solution:
+    $$
+    L = \sum_{i=1}^n \log p(y_i|x_i, \theta)
+    $$
+}   
+\wa{Training of Logistic Regression}{
+    The training of logistic regression is done by maximising the log likelihood $L$ of $w$ and $b$.
+    $$
+    L = \sum_{i=1}^n \log p(y_i|x_i, \theta)
+    $$
+    There are no closed-form solutions to this problem, so iterative methods like gradient ascent are used
+    which is equivalent to minimising the negative log likelihood. 
+}
+\wde{Multiclass Classification}{
+    Using the softmax function, we can extend logistic regression to multiclass classification.
+    Softmax is defined as
+    $$
+    \operatorname{softmax}\left( \begin{bmatrix} z_1 \\ z_2 \\ \vdots \\ z_k \end{bmatrix} \right) = \begin{bmatrix} \frac{e^{z_1}}{\sum_{i=1}^k e^{z_i}} \\ \frac{e^{z_2}}{\sum_{i=1}^k e^{z_i}} \\ \vdots \\ \frac{e^{z_k}}{\sum_{i=1}^k e^{z_i}} \end{bmatrix}
+    $$
+}

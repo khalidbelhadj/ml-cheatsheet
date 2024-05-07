@@ -1,0 +1,30 @@
+\wde{Perceptron (Single-layer Neural Network)}{
+    A simple linear classifier that learns a weight vector $w$ to classify data points.
+    The perceptron training algorithm can be used to learn the weights.
+    Can model logical functions like AND, OR and NOT.
+}
+\wt{Universal Approximation Theorem}{
+    A single-output node NN with  a single hidden layer with 
+    finite neurons can app    finite neurons can approximate continuous (and discontinuous) functions
+} 
+\wde{Multi-layer Perceptron (MLP) / Feedforward Neural Netword (FNN)}{
+    A neural network with multiple layers of perceptrons.
+    The network is feedforward as there are no cycles in the network. 
+    It can model complex decision boundaries (piecewise linear) [XOR, etc]
+    The perceptron training algorithm can not be used to learn the weights.
+}
+\wde{Activation Function}{
+    Allows for non-linear decision boundaries. They should 
+    be differentiable. Also controls the output range to 
+    a specific range. Common activation functions are:
+    \begin{itemize}
+        \item Sigmoid: $\sigma(x) = \frac{1}{1 + e^{-x}}$
+        \item Hyperbolic Tangent (tanh): $\tanh(x) = \frac{1-\exp(-2x)}{1+\exp(-2x)}$
+        \item ReLU: $f(x) = \max(0, x)$ (faster than tanh)
+        \item Leaky ReLu solves the 'dying ReLU' problem
+    \end{itemize}
+}
+\wde{Computation Graph}{
+    Represents computation as a directed graph comprising of simple operations 
+    on vectors and matrices which allows for automatic differentiation.
+}
