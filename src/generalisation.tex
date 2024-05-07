@@ -1,0 +1,124 @@
+\wde{Independtly and Identically Distributed (i.i.d.)}{
+    A dataset is said to be i.i.d. if the data points come from the same distribution and are statistically independent of each other.
+}
+\wde{Training Error}{
+    For a training set $S$, the training error for a loss $\ell$ and a program $h$ is defined as 
+    $$
+        L_S(h) = \frac{1}{n}\sum_{i=1}^{n} \ell(y_i, h(x_i))
+    $$
+}
+\wde{Generalisation Error}{
+    For a program $h$, the generalisation error is defined as
+    $$
+        \L_{\mathcal{D}}(h) = \E_{(x, y) \sim \mathcal{D}}\left[ \ell(y, h(x)) \right]
+    $$
+    The goal of learning is to minimise the generalisation error.
+}
+\wde{Hypothesis Class}{
+    A hypothesis class $\mathcal{H}$ is a set of possible programs of a particular form.
+}
+\we{Hypothesis Class Example}{
+    The set of all linear functions is a hypothesis class i.e.
+    $$
+    \mathcal{H}_{lin} = \{ h(x) = w^Tx \mid w \in \mathbb{R}^d \}
+    $$
+}
+\wde{Learning Algorithm}{
+    A learning algorithm is a function that takes a data set of size $m$ and returns a function from the 
+    hypothesis class $\mathcal{H}$ 
+}
+\wt{Probably Approximately Correct (PAC)} {
+    A hypothesis class $\mathcal{H}$ is PAC-learnable with a learning algorithm $A$ if for any 
+    distribution $\mathcal{D}$, and any $\epsilon > 0$ and $0 \leq \delta \leq 1$, there exists 
+    $N > 0$ such that for any $n \geq N$:
+    $$
+    \mathbb{P}_{S \sim \mathcal{D}^n} \left[ L_{\mathcal D }(A(S)) - \min_{h' \in \mathcal{H}} L_{\mathcal{D}}(h') > \epsilon \right] < \delta 
+    $$ 
+    In other words, with high probability, the program learned by $A$ achieves a similar error to the best program in $\mathcal{H}$.
+}
+\wde{Empirical Risk Minimisation (ERM)}{
+    Minimising the loss on a training set is also known as empirical risk minimisation 
+    $$
+        A_{ERM, \mathcal{H}(s)} = h_{ERM} = \argmin_{h \in \mathcal{H}} L_S(h)
+    $$
+}
+\wt{No free lunch theorem}{
+    Suppose $|\mathcal{X}| = 2m$. For any learning algorithm $A$, there is a distribution $\mathcal{D}$ and 
+    $f : \mathcal{X} \to \{0,1\}$ such that $L_\mathcal{D}(f) = 0$, but 
+    $$
+        \mathbb{P}_{S \sim \mathcal{D}^m} \left[ L_{\mathcal{D}}(A(S)) \geq \frac{1}{10} \right] \geq \frac{1}{10}
+    $$
+}
+\wt{Error Decomposition}{
+    $$
+    \L_{\mathcal{D}}(h) = \underbrace{L_{\mathcal{D}}(h) - \min_{h' \in \mathcal{H}} L_{\mathcal{D}}(h')}_{\text{Estimation Error}} + \underbrace{\min_{h' \in \mathcal{H}} L_{\mathcal{D}}(h') - L_S(h)}_{\text{Approximation Error}} 
+    $$
+}
+\wde{Uniform Convergence}{
+    A hypothesis class $\mathcal{H}$ has uniform convergence property if for any distribution 
+    $\mathcal{D}$, and any $\epsilon > 0$ and $0 \leq \delta \leq 1$, there exists $N > 0$ such that for any $n \geq N$ and every $h \in \mathcal{H}$:
+    $$
+    \mathbb{P}_{S \sim \mathcal{D}^n} \left[ |L_{S}(h) - L_{\mathcal{D}}(h)| > \epsilon \right] < \delta
+    $$
+}
+\wt{Uniform Convergence implies PAC learnability}{
+    If a hypothesis class $\mathcal{H}$ has the uniform convergence property, then it is PAC learnable with ERM.
+}
+\wde{Shattering}{
+    A set of $n$ points is shattered by $\mathcal{H}$ if there is an arrangement of $n$ points such 
+    that classifiers in $\mathcal{H}$ can produce all $2^n$ ways of labelling the points.
+}
+\wde{Vapnik-Chervonenkis (VC) Dimension}{
+    VC Dimension is the largest number of points that $\mathcal{H}$ can shatter
+}
+
+\wde{VC Generalisation Bounds}{
+    With probability $1 - \delta$, for all $h \in \mathcal{H}$:
+    $$
+    L_{\mathcal{D}}(h) \leq L_S(h) + 2 \sqrt{\frac{8d \log (en/d) + 2 \log(4/\delta)}{n}}
+    $$
+    d is the VC dimension of $\mathcal{H}$.
+}
+\we(VC Dimension){
+    \begin{itemize}
+        \item For linear classifers, $\VC(\mathcal{H}_{lin}) = p + 1$
+        % \item For polynomial classifiers of degree $p$, $\VC(\mathcal{H}_{poly}) = \binom{p+d}{d}$
+        \item For MLP with $p$ edges, $\VC(\mathcal{H}_{mlp}) = O(p\log p)$
+    \end{itemize}
+}
+\wde{Surrogate Loss}{
+    A surrogate loss is a loss function that is easier to optimise than the original loss function.
+    Cross entropy or log likelihood are common surrogate losses for 0-1 loss.
+}
+\wde{Underfitting}{
+    A model $h$ is underfitting if there is another model $f$ that has a lower training i.e. 
+    $L_S(f) < L_S(h)$.
+}
+\wde{Overfitting}{
+    A model $h$ is overfitting if there is another model $f$ that has a higher training error ($S$)
+    but a lower test error ($S'$) i.e. $L_{S}(f) > L_S(h)$ and $L_{S'}(f) < L_{S'}(h)$.
+}
+\wde{Development Set}{
+    A development set is a subset of the training set that is used to tune hyperparameters.
+}
+\wde{Stability}{
+    A learning algorithm is stable if the learned program does not change much in
+    performance when we change the data set slightly. 
+}
+\wt{Stability prevents Overfitting}{
+    Stable learning algorithms don't overfit
+}
+\wde{$\lambda$-strongly convex}{
+    A function $f$ is $\lambda$-strongly convex if for all $x, y$ and $\lambda > 0$:
+    $$
+    f(y) \geq f(x) + \dotp{\nabla f(x)}{y - x} + \frac{\lambda}{2}\norm{y - x}^2
+    $$
+}
+\wt{$L_2$ Regularisation}{
+    Regularisation is a technique to prevent overfitting by adding a penalty term to the loss function.
+    For $L_2$ regularisation, the loss function is modified to
+    $$
+    L = \frac{1}{n} \sum_{i=1}^n \ell(y_i, h(x_i)) + \frac{\lambda}{2}\norm{w}^2
+    $$
+    Note that if the loss function is convex, then the regularised loss function is $\lambda$-strongly convex.
+}
