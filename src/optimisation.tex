@@ -1,0 +1,151 @@
+\wde{Minimum}{
+    The minimum of a function $f : \mathbb{R}^d \to \mathbb{R}$ is written as $\min_{x} f(x)$, and has 
+    the property that $\min_{x} f(x) \leq f(y)$ for all $y \in \mathbb{R}^d$.
+    The value $x^*$ such that $f(x^*) = \min_{x} f(x)$ is called the minimizer.
+}
+\wde{Convexity}{
+    A function $f : \mathbb{R}^d \to \mathbb{R}$ is convex if for any $0 \leq \alpha \leq 1$, we have
+    $$
+    f(\alpha x + (1-\alpha)y) \leq \alpha f(x) + (1-\alpha)f(y)
+    $$
+    In general,
+    $$
+    f(\sum_{i=1}^k \alpha_i x_i) \leq \sum_{i=1}^k \alpha_i f(x_i)
+    $$
+}
+\wde{Concavity}{
+    A function $f$ is concave if $-f$ is convex.
+}
+
+\wt{First Order Condition (Convexity)}{
+    If $f$ is convex then,
+    \begin{itemize}
+        \item $f(x) \geq f(y) + \nabla f(y)^\top(x-y)$ 
+    \end{itemize}
+}
+
+\wde{Positive Semidefinite}{
+    A matrix $A$ is positive semidefinite if for all vectors $v \neq 0$ we have $v^\top Av \geq 0$.
+    Also written as $A \succeq 0$.
+}
+
+\wt{Convex Function Implies Positive Semidefinite Hessian}{
+    If $f$ is convex, then $\nabla^2 f(x) \succeq 0$.
+}
+
+\wde{Positive Definite}{
+    A matrix $A$ is positive definite if for all vectors $v \neq 0$ we have $v^\top Av > 0$.
+    Also written as $A \succ 0$.
+}
+
+\wde{Affine}{
+    A function $f$ is affine if $f(x) = Ax + b$ for some matrix $A$ and vector $b$.
+}
+
+\wt{Affine Transform Preservation}{
+    If $f$ is convex, then $g(x) = f(Ax + b)$ is also convex.
+    % TODO: show proof
+}
+
+\wt{Non-negative Weighted Sum}{
+    If $f_1, f_2, \ldots, f_k$ are convex functions, then $f(x) = \sum_{i=1}^k \beta_i f_i(x)$ is convex for all $\beta_i \geq 0$.
+}
+
+\we{Gradient of Quadratic Form}{
+    $\nabla_x (\dotp{x}{Ax}) = (A + A^\top)x$ % called 
+}
+
+\wde{Strictly Convex}{
+    A function $f : \mathbb{R}^d \to \mathbb{R}$ is called strictly if for $0 \leq \alpha \leq y$ we have
+    $$
+    f(\alpha x + (1-\alpha)y) < \alpha f(x) + (1-\alpha)f(y)
+    $$
+    for any $x \neq y$.
+}
+
+\wde{First Order Condition (Strict Convexity)}{
+    If $f$ is strictly convex then,
+    \begin{itemize}
+        \item $f(x) > f(y) + \nabla f(y)^\top(x-y)$ 
+    \end{itemize}
+}
+\wt{Unique Minimizer}{
+    If $f$ is strictly convex, then $f$ has a unique minimizer.
+}
+
+\wt{Jensen's Inequality}{
+    If a function $f$ is convex,
+    $$
+    f(\E_{x \sim p}[x]) \leq \E_{x \sim p}[f(x)]
+    $$
+}
+
+\wde{Gradient Descent}{
+    The gradient descent algorithm is given by
+    $$
+    x_{t+1} = x_t - \eta \nabla f(x_t)
+    $$
+    where $\eta$ is the learning rate/step size.
+}
+
+% sublinear, linear and quadratic convergence
+\wde{Convergence}{
+    Given $\epsilon > 0$, we say that an algorithm converges to a point $x^*$ if 
+    $$
+    f(x_t) - f(x^*) \leq \epsilon 
+    $$
+}
+
+\wde{Convergence Rate}{
+    The convergence rate of an algorithm is the rate at which the algorithm converges to the optimal point.
+    There are three types of convergence rates:
+    \begin{itemize}
+        \item Sublinear: $f(x_t) - f(x^*) \leq \frac{c}{t^2}$ ($\epsilon = O(\frac{1}{t^2})$,$ t = O(\frac{1}{\sqrt{\epsilon}})$)
+        \item Linear: $f(x_t) - f(x^*) \leq cr^t$ ($\epsilon = O(r^t)$,$t = O(\log \frac{1}{\epsilon})$)
+        \item Quadratic: $f(x_t) - f(x^*) \leq c r^{2^t}$ ($\epsilon = O(r^{2^t})$,$t = O(\log \log \frac{1}{\epsilon})$)
+    \end{itemize}
+    Where $ 0 < r < 1$.
+}
+
+\wde{Subgradient}{
+    A subgradient at $x$ is a vector $g$ that satisfies 
+    $$
+    f(y) \geq f(x) + \dotp{g}{(y-x)}
+    $$
+    for any $y$, and the set of subgradients at $x$ is denoted as $\partial f(x)$.
+    $\nabla f(x) \in \partial f(x)$ if $f$ is differentiable at $x$.
+    In other words subgradients are tangents that are below the function.
+}
+\we{Constrained Optimisation Problem}
+{
+  An example of a constrained optimisation problem is
+  $$
+    \min_x x^2 \text{ s.t. } -2.5 \leq x \leq -0.5  
+  $$
+}
+\wde{Feasible Solution}{
+    A feasible solution is a point that satisfies all the constraints.
+}
+
+\wde{Lagrangian}{
+    If you have an optimisation problem of the form 
+    $$
+    \min_x f(x) \text{ s.t. } h(x) \leq 0
+    $$
+    the \textbf{Lagrangian} is defined as 
+    $$
+    f(x) + \lambda h(x)
+    $$
+    for some $\lambda \geq 0$ (Lagrange multiplier).
+}
+
+\wa{Solving the Lagrangian}{
+    \begin{itemize}
+        \item Solve $g(\lambda) = \min_x [ f(x) + \lambda h(x) ]$
+        \item Find $\hat \lambda$ such that $\min_x [ f(x) + \hat \lambda h(x) ]$ gives a feasible solution
+        \item Suppose $\hat x$ is the solution to the above, and $x^* = \arg\min_{x: h(x) \leq 0} f(x)$ (the optimal solution), then 
+        $$
+            f(\hat x) = f(\hat x) + \hat\lambda h(\hat x) \leq f(x^*) + \hat\lambda h(x^*) \leq f(x^*)
+        $$
+    \end{itemize}
+}

@@ -1,0 +1,49 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{adjustbox}
+\usepackage{stmaryrd}
+\usepackage{tikz}
+\setlist{nosep}
+\titleformat{\subsection}[runin]{\normalfont\Large\bfseries}{\thesubsection.}{6pt}{}[]
+\titlespacing*{\subsection}{0pt}{0pt}{0pt}
+
+
+
+% Disable warnings
+% chktex-file 1
+
+\input{style.sty}
+\input{defs.tex}
+
+% \fontsize{2}
+
+\begin{document}
+  \begin{multicols}{2}
+  \subsection*{Analytic Geometry}
+  \input{src/geometry.tex}
+
+  \subsection*{Calculus}
+  \input{src/calculus.tex}
+
+  \subsection*{Optimisation}
+  \input{src/optimisation.tex}
+
+  \subsection*{Probability}
+  \input{src/prob.tex}
+
+  \subsection*{Training}
+  
+
+
+  %
+  % \end{multicols}
+  % % \begin{multicols}{2}
+  %   \subsection*{Examples}
+  % \input{src/examples/l1}
+  % \input{src/examples/l2}
+  \end{multicols}
+\end{document}

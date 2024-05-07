@@ -1,0 +1,53 @@
+\wde{Derivative}{
+    The derivative of a function $f : \mathbb{R} \to \mathbb{R}$ at $x_0$ is defined as:
+    $$
+    (D_x f)(x_0) = \left(\frac{d}{dx} f\right)(x_0) = \lim_{h\to 0} \frac{f(x_0+h) - f(x_0)}{h}
+    $$
+}
+\wde{Directional Derivative}{
+    The directional derivative of a function $f : \mathbb{R}^d \to \mathbb{R}$ along 
+    the direction $v$ at $x_0 \in \mathbb{R}^d$ is defined as:
+    $$
+        (D_v f)(x_0) = \lim_{h\to 0} \frac{f(x_0 + hv) - f(x_0)}{h}
+    $$
+}
+\wde{Partial Derivative}{
+    The partial derivative is a directional derivative along the 
+    direction of coordinate axes. For a function $f : \mathbb{R}^d \to \mathbb{R}$,
+    the partial derivative with respect to the $i$-th coordinate is denoted as:
+    $$
+    \pderivative{f}{x_i} = \lim_{h\to 0} \frac{f(x_1, \ldots, x_i + h, \ldots, x_d) - f(x_1, \ldots, x_i, \ldots, x_d)}{h}
+    $$
+}
+\wde{Gradient}{
+    The gradient of a function is the vector consisting of all partial derivatives
+    denoted by $\nabla f$ or $\pderivative{f}{x}$. For a function $f : \mathbb{R}^d \to \mathbb{R}$,
+}
+% reset italics
+\we{Gradient Identities}{
+    \begin{itemize}
+        \item \normalfont Given a function $f(a) = \dotp{b}{a}$, $(\nabla f)(a) = b$ 
+        \item Given a function $f(a) = \norm{a}^2$, $(\nabla f)(a) = 2a$
+    \end{itemize}
+}
+\we{Hessian}{
+    The Hessian of a function $f : \mathbb{R}^d \to \mathbb{R}$ is the matrix of second partial derivatives:
+    $$
+    \nabla^2 f = \begin{bmatrix}
+        \pderivative{^2 f}{x_1^2} & \pderivative{^2 f}{x_1x_2} & \ldots & \pderivative{^2 f}{x_1x_d} \\
+        \pderivative{^2 f}{x_2x_1} & \pderivative{^2 f}{x_2^2} & \ldots & \pderivative{^2 f}{x_2x_d} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        \pderivative{^2 f}{x_dx_1} & \pderivative{^2 f}{x_dx_2} & \ldots & \pderivative{^2 f}{x_d^2}
+    \end{bmatrix}
+    $$
+}
+\we{Hessian Example}{
+    Given a function $f(x,y) = x^2 - y^2$, the Hessian is:x:
+    $$
+    \nabla^2 f = \begin{bmatrix}
+        2 & 0 \\
+        0 & -2
+    \end{bmatrix}
+    $$
+    The 2 indicates that it looks like a cup along the $x$-axis and the -2 indicates that it looks like an upside-down cup along the $y$-axis.
+}

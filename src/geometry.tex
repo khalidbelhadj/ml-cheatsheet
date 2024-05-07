@@ -1,0 +1,105 @@
+\wde{Dot Product}{The dot product between two vectors $u$ and $v$ is defined as 
+$$
+\dotp{u}{v} = u_1v_1 + u_2v_2 + \ldots + u_nv_n = \sum_{i=1}^n u_iv_i
+$$}
+\wde{Bilinearity}{
+    The dot product is bilinear, i.e. for any vectors $u,v,w$ and scalar $a$,
+    \begin{align*}
+        \dotp{au}{v} &= a\dotp{u}{v} = \dotp{u}{av} \\
+        \dotp{u+v}{w} &= \dotp{u}{w} + \dotp{v}{w} \\
+        \dotp{w}{u+v} &= \dotp{w}{u} + \dotp{w}{v}
+    \end{align*}
+}
+\wde{Commutativity}{The dot product is commutative, i.e. $\dotp{u}{v} = \dotp{v}{u}$}
+\wde{Inner Product}{
+    The inner product between two vectors $u$ and $v$ is defined as 
+    $$
+    \inner{u}{v}
+    $$
+    Dot product is a special case of inner product.
+}
+\wde{$\ell_2$ Norm}{
+    The $\ell_2$ norm of a vector $v$ is defined as
+    $$
+    \norm{v} = \sqrt{\dotp{v}{v}} = \sqrt{v_1^2 + v_2^2 + \ldots + v_n^2}
+    $$
+    Also called the Euclidean norm.
+}
+
+\wde{$\ell_2$ properties}
+{
+ For all vectors $u,v$ and scalar $a$,
+ \begin{itemize}
+    \item The $\ell_2$ norm is non-negative, i.e. $\norm{v} \geq 0$.
+    \item $\norm{au} = |a|\norm{u}$ for any scalar $a$.
+    \item $\norm{u}$ is zero if and only if $u$ is the zero vector.
+    \item The triangle inequality holds, i.e. $\norm{u+v} \leq \norm{u} + \norm{v}$.
+    \item $\norm{x-y} = \norm{y-x}$, also called symmetry.
+    \item $\norm{u+v}^2 = \norm{u}^2 + 2\dotp{u}{v} + \norm{v}^2$
+    \item $\cos \theta = \frac{\dotp{u}{v}}{\norm{u}\norm{v}}$ (can be proved using the law of cosines)
+ \end{itemize}
+}
+\wt{Cauchy-Schwarz Inequality}{
+    For any vectors $u,v$, the following inequality holds:
+    $$
+    |\inner{u}{v}| \leq \norm{u}\norm{v}
+    $$
+}
+\wde{Line}{
+    A line is a set of points $$\{x : x = u + tv \text{ for some } t \in \mathbb{R}\}$$ where $u$ is a point on the line and $v \neq 0$ is the direction vector.
+}
+\wde{Plane}{
+    A plane is a set of points $$\{ x : \dotp{v}{x-u} = 0 \}$$ where $v$ is the normal vector to the plane and $u$ is the shift from the origin.
+}
+\wde{Projection}{
+    The vector $\norm{u}\cos \theta \frac{v}{\norm{v}}$ is a projection of $u$ onto $v$. 
+    % let's use tikz to draw this 
+    % \begin{center}
+    %     \begin{tikzpicture}
+    %         \draw[->] (0,0) -- (2,0) node[right] {$v$};
+    %         \draw[->] (0,0) -- (1,1) node[above] {$u$};
+    %         \draw (0.5,0) arc (0:45:0.5);
+    %         \node at (0.7,0.2) {$\theta$};
+    %         \draw[dashed] (1,1) -- (1,0);
+    %     \end{tikzpicture}
+    % \end{center}
+}
+\wde{Distance between a point and a plane}{
+    The distance between a point $z$ and a plane $\dotp{v}{x-u} = 0$ is given by
+    $$
+    \frac{|\dotp{v}{z-u}|}{\norm{v}}
+    $$ 
+    % TODO draw a diagram
+}
+\wde{Distance between a point and a line}{
+    The distance between a point $z$ and a line $x = u + tv$ is given by
+    $$
+    \norm{z-u-\frac{\dotp{z-u}{v}}{\norm{v}^2}v}
+    $$
+    % TODO draw a diagram
+}
+
+\wde{Singular Value Decomposition (SVD)}{
+    The SVD of a matrix $X$ is $U\Sigma V^T$, where $\dotp{U}{U} = I, \dotp{V}{V} = I$ and $\Sigma$ is a diagonal matrix:
+    $$
+    \Sigma = \begin{bmatrix}
+        \sigma_1 & 0 & \ldots & 0 \\
+        0 & \sigma_2 & \ldots & 0 \\
+        \vdots & \vdots & \ddots & \vdots \\
+        0 & 0 & \ldots & \sigma_n
+    \end{bmatrix}
+    $$
+    and $\sigma_1 \geq \sigma_2 \geq \ldots \geq \sigma_n \geq 0$.
+}
+
+\wt{Eckart-Young Theorem}{
+    Let $\Sigma_k = \operatorname{diag}(\sigma_1, \ldots, \sigma_k, 0, \ldots, 0)$ where $k \leq d$.
+    The matrix $U\Sigma_kV^T$ is the optimal solution to the following problem:
+    $$
+    \min_{\hat X} \frobnorm{X - \hat X} \text{ s.t. } \operatorname{rank}(\hat X) \leq k
+    $$
+    The matrices $Z = U\Sigma_k$ and $W = V^T$ are the optimal solution to 
+    $$
+    \min_{Z,W} \frobnorm{X - ZW} \text{ s.t. } Z \in \mathbb{R}^{n \times k}, W \in \mathbb{R}^{k \times d}
+    $$
+}
