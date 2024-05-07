@@ -12,6 +12,8 @@
     The network is feedforward as there are no cycles in the network. 
     It can model complex decision boundaries (piecewise linear) [XOR, etc]
     The perceptron training algorithm can not be used to learn the weights.
+
+    The notation $w_{ij}^{(l)}$ denotes the weight from the $i$th neuron in layer $l-1$ to the $j$th neuron in layer $l$.
 }
 \wde{Activation Function}{
     Allows for non-linear decision boundaries. They should 
@@ -27,4 +29,17 @@
 \wde{Computation Graph}{
     Represents computation as a directed graph comprising of simple operations 
     on vectors and matrices which allows for automatic differentiation.
+}
+\wde{Training of Single-Layer Network}{
+    Given an error function $E_n = \frac{1}{2}(y_n - \hat y_n)^2$ (MSE),
+    where $\hat y_n = g(a_{nk})$ (some activation function $g$) [usually sigmoid],
+    and $a_{nk} = w_k^Tx_n$ (weighted sum of inputs),
+    the weights are updated using the gradient descent algorithm
+    $$
+    w_{t+1} = w_t - \eta \pderivative{E_n}{w_k}
+    $$    
+    By chain rule,
+    $$
+    \pderivative{E_n}{w_k} = \pderivative{E_n}{\hat y_n} \pderivative{\hat y_n}{a_{nk}} \pderivative{a_{nk}}{w_k}
+    $$
 }
