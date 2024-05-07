@@ -80,32 +80,6 @@
     $$
 }
 
-\wde{Gradient Descent}{
-    The gradient descent algorithm is given by
-    $$
-    x_{t+1} = x_t - \eta \nabla f(x_t)
-    $$
-    where $\eta$ is the learning rate/step size.
-}
-
-% sublinear, linear and quadratic convergence
-\wde{Convergence}{
-    Given $\epsilon > 0$, we say that an algorithm converges to a point $x^*$ if 
-    $$
-    f(x_t) - f(x^*) \leq \epsilon 
-    $$
-}
-
-\wde{Convergence Rate}{
-    The convergence rate of an algorithm is the rate at which the algorithm converges to the optimal point.
-    There are three types of convergence rates:
-    \begin{itemize}
-        \item Sublinear: $f(x_t) - f(x^*) \leq \frac{c}{t^2}$ ($\epsilon = O(\frac{1}{t^2})$,$ t = O(\frac{1}{\sqrt{\epsilon}})$)
-        \item Linear: $f(x_t) - f(x^*) \leq cr^t$ ($\epsilon = O(r^t)$,$t = O(\log \frac{1}{\epsilon})$)
-        \item Quadratic: $f(x_t) - f(x^*) \leq c r^{2^t}$ ($\epsilon = O(r^{2^t})$,$t = O(\log \log \frac{1}{\epsilon})$)
-    \end{itemize}
-    Where $ 0 < r < 1$.
-}
 
 \wde{Subgradient}{
     A subgradient at $x$ is a vector $g$ that satisfies 

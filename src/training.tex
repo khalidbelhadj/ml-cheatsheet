@@ -1,0 +1,48 @@
+\wde{Loss Function}{
+    Given a predicted output $\hat y$ and observed output $y$,
+    the loss function measures how close the model's prediction is
+}
+\wde{Zero-One Loss}{
+    $L(y, \hat y) = \mathbb{I}_{ \{ y \neq \hat y \} }$ 
+}
+\wde{Mean Squared Error (MSE)}{
+    $L(y, \hat y) = (y - \hat y)^2$
+}
+\wde{Hinge Loss}{
+    $L(y, \hat y) = \max(0, 1 - y \cdot \hat y)$
+}
+\wde{Gradient Descent}{
+    The gradient descent algorithm is given by
+    $$
+    x_{t+1} = x_t - \eta \nabla f(x_t)
+    $$
+    where $\eta$ is the learning rate/step size.
+}
+% sublinear, linear and quadratic convergence
+\wde{Convergence}{
+    Given $\epsilon > 0$, we say that an algorithm converges to a point $x^*$ if 
+    $$
+    f(x_t) - f(x^*) \leq \epsilon 
+    $$
+}
+\wde{Convergence Rate}{
+    The convergence rate of an algorithm is the rate at which the algorithm converges to the optimal point.
+    There are three types of convergence rates:
+    \begin{itemize}
+        \item Sublinear: $f(x_t) - f(x^*) \leq \frac{c}{t^2}$ ($\epsilon = O(\frac{1}{t^2})$,$ t = O(\frac{1}{\sqrt{\epsilon}})$)
+        \item Linear: $f(x_t) - f(x^*) \leq cr^t$ ($\epsilon = O(r^t)$,$t = O(\log \frac{1}{\epsilon})$)
+        \item Quadratic: $f(x_t) - f(x^*) \leq c r^{2^t}$ 
+    \end{itemize}
+}
+\wa{Stochastic Gradient Descent (SGD)}{
+    Sample a random point $x_t, y_t$ from the dataset and compute the gradient at that point.
+    Repeat until solution is satisfactory.
+}
+\wa{Mini-batch Gradient Descent}{
+    Sample a mini-batch of points $x_t, y_t$ from the dataset and compute the gradient at that point.
+    Repeat until solution is satisfactory.
+}
+\wde{Training}{
+    The act of minimising the loss function by adjusting the model's parameters
+    is known as training.
+}

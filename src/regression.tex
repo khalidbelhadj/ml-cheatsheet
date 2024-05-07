@@ -1,0 +1,33 @@
+\wde{Regression}{
+    The learning of relationships between input variables $x$ and a 
+    numerical output $y$
+}
+\wde{Feature Transformation}{
+    We call $\phi$ a feature transformation. It transforms the input space $X$ into a new space $Z$.
+}
+\wde{Linear Regression}{
+    Given a dataset $S = \{ (\phi(x_1), y_1), \ldots, (\phi(x_n), y_n) \}$,
+    minimise the MSE loss function
+    $$
+    L = \frac{1}{n} \sum_{i=1}^n (y_i - \hat y_i)^2
+    $$
+    where $\hat y_i = w^T\phi(x_i)$
+}
+\wde{Closed-form Solution}{
+    The closed-form solution to linear regression is given by
+    $$
+    w = (\Phi\Phi^T)^{-1}\Phi y
+    $$
+}
+\wde{Probalistic Interpretation}{
+    The probabilistic interpretation of linear regression is that
+    $$
+    y = w^T\phi(x) + \epsilon_i
+    $$
+    where $\epsilon_i \sim \mathcal{N}(0, 1)$ which 
+    implies $y_i \sim \mathcal{N}(w^T\phi(x_i), 1)$.
+    So the log likelihood (L) of the data is
+    $$
+    L = \sum_{i=1}^N \left[ \frac{1}{2} \log(2\pi) - \frac{1}{2} (y_i - w^T\phi(x_i))^2 \right]
+    $$
+}

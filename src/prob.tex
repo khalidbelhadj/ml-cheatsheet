@@ -34,7 +34,6 @@
     $$
     The original joint distribution (of size $|\mathcal{X}| \times |\mathcal{Y}| \times |\mathcal{Z}|$) can be factorised into two distributions of size $|\mathcal{X}| \times |\mathcal{Y}|$ and $|\mathcal{Z}|$.
 }
-
 \wde{Mutual Independence}{
     A set of variables $\{x_1, \ldots, x_n\}$ are mutually independent if
     $$
@@ -52,7 +51,6 @@
     If a set of variables $\{x_1, \ldots, x_n\}$ are mutually independent, then they are pairwise independent.
     Converse is not true!
 }
-
 \wde{Conditional Independence}{
     The variables $x$ and $y$ are conditionally independent given $z$ if 
     $$
@@ -68,21 +66,18 @@
         p(x,y | z) &= p(x | z)p(y | z)
     \end{align*}
 }
-
 \wde{Bayes Rule}{
     Bayes rule is a way to invert conditional probabilities.
     $$
     p(x|y) = \frac{p(y|x)p(x)}{p(y)}
     $$
 }
-
 \wde{Chain Rule}{
     Any joint distribution can be factorised into a product of conditional distributions.
     $$
     p(x_1, \ldots, x_n) = p(x_1)p(x_2|x_1)p(x_3|x_1,x_2)\cdots p(x_n|x_1,\ldots,x_{n-1})
     $$
 }
-
 \wde{(directed) Graph Representation}{
     A directed graph is a set of nodes connected by edges.
     Each vertex is a random variable and each edge represents a direct dependency.
@@ -92,7 +87,6 @@
     p(x_1, \ldots, x_n) = \prod_{i=1}^n p(x_i | \text{parents}(x_i))
     $$
 }
-
 \wde{Graph structures}{
     \begin{itemize}
     \item Chain $x \perp z | y$
