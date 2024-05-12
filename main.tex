@@ -7,6 +7,7 @@
 \usepackage{adjustbox}
 \usepackage{stmaryrd}
 \usepackage{tikz}
+\usetikzlibrary{bayesnet}
 \setlist{nosep}
 \titleformat{\subsection}[runin]{\normalfont\Large\bfseries}{\thesubsection.}{6pt}{}[]
 \titlespacing*{\subsection}{0pt}{0pt}{0pt}
@@ -46,7 +47,6 @@
 
   \subsection*{Neural Networks}
   \input{src/nn.tex}
-  
 
   \subsection{Generalisation}
   \input{src/generalisation.tex}
@@ -55,6 +55,9 @@
   \input{src/pca.tex}
   \subsection*{Expectation Maximisation (EM)}
   \input{src/em.tex}
+
+  \subsection*{Probabilistic Graphical Models}
+  \input{src/graphical-models.tex}
 
   %
   % \end{multicols}

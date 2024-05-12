@@ -7,6 +7,25 @@
     p(x) = \frac{1}{2\pi^{d/2}|\Sigma|^{1/2}}\exp\left(-\frac{1}{2}(x-\mu)^T\Sigma^{-1}(x-\mu)\right)
     $$
 }
+
+\wde{Conditional Probability}{
+    The probability of an event $A$ given that another event $B$ has occurred is denoted by $p(A|B)$.
+    $$
+    p(A|B) = \frac{p(A,B)}{p(B)}
+    $$ 
+}
+\wde{Joint Probability}{
+    The probability of two events $A$ and $B$ occurring together is denoted by $p(A,B)$.
+    There is an useful identity that relates joint probability to conditional probability.
+    $$
+    p(A,B) = p(A|B)p(B) = p(B|A)p(A)
+    $$
+    This can be sequentially extended to more variables i.e. 
+    $$
+    p(A,B,C) = p(A|B,C)p(B,C) = p(A|B,C)p(B|C)p(C)
+    $$
+}
+
 \wde{Statistical Independence}{
     Two variables $x$ and $y$ are independent if 
     $$ 
@@ -78,46 +97,9 @@
     p(x_1, \ldots, x_n) = p(x_1)p(x_2|x_1)p(x_3|x_1,x_2)\cdots p(x_n|x_1,\ldots,x_{n-1})
     $$
 }
-\wde{(directed) Graph Representation}{
-    A directed graph is a set of nodes connected by edges.
-    Each vertex is a random variable and each edge represents a direct dependency.
-    It is directed and acyclic (DAG).
-    A distribution factorises according to the graph if 
+\wde{Conditional Probability Chain Rule}{
+    The chain rule can be generalised to conditional probabilities.
     $$
-    p(x_1, \ldots, x_n) = \prod_{i=1}^n p(x_i | \text{parents}(x_i))
+    p(x_1, \ldots, x_n | y) = p(x_1 | y)p(x_2 | x_1, y)\cdots p(x_n | x_1, \ldots, x_{n-1}, y)
     $$
-}
-\wde{Graph structures}{
-    \begin{itemize}
-    \item Chain $x \perp z | y$
-    \begin{center}
-        \begin{tikzpicture}
-            \node[draw, circle] (x) at (0,0) {$x$};
-            \node[draw, circle] (y) at (2,0) {$y$};
-            \node[draw, circle] (z) at (4,0) {$z$};
-            \draw[->] (x) -- (y);
-            \draw[->] (y) -- (z);
-        \end{tikzpicture}
-    \end{center}
-    \item Common cause $x \perp z | y$
-    \begin{center}
-        \begin{tikzpicture}
-            \node[draw, circle] (x) at (0,0) {$x$};
-            \node[draw, circle] (y) at (2,0) {$y$};
-            \node[draw, circle] (z) at (4,0) {$z$};
-            \draw[->] (y) -- (x);
-            \draw[->] (y) -- (z);
-        \end{tikzpicture}
-    \end{center}
-    \item v-structure $x \perp z$ but $x \not\perp z | y$
-    \begin{center}
-        \begin{tikzpicture}
-            \node[draw, circle] (x) at (0,0) {$x$};
-            \node[draw, circle] (y) at (2,0) {$y$};
-            \node[draw, circle] (z) at (4,0) {$z$};
-            \draw[->] (x) -- (y);
-            \draw[->] (z) -- (y);
-        \end{tikzpicture}
-    \end{center}
-    \end{itemize}
 }
