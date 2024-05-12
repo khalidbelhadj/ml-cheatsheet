@@ -2,7 +2,7 @@
     A dataset is said to be i.i.d. if the data points come from the same distribution and are statistically independent of each other.
 }
 \wde{Training Error}{
-    For a training set $S$, the training error for a loss $\ell$ and a program $h$ is defined as 
+    For a training set $S$, the training error for a loss $\ell$ and a program $h$ is defined as
     $$
         L_S(h) = \frac{1}{n}\sum_{i=1}^{n} \ell(y_i, h(x_i))
     $$
@@ -24,38 +24,38 @@
     $$
 }
 \wde{Learning Algorithm}{
-    A learning algorithm is a function that takes a data set of size $m$ and returns a function from the 
-    hypothesis class $\mathcal{H}$ 
+    A learning algorithm is a function that takes a data set of size $m$ and returns a function from the
+    hypothesis class $\mathcal{H}$
 }
 \wt{Probably Approximately Correct (PAC)} {
-    A hypothesis class $\mathcal{H}$ is PAC-learnable with a learning algorithm $A$ if for any 
-    distribution $\mathcal{D}$, and any $\epsilon > 0$ and $0 \leq \delta \leq 1$, there exists 
+    A hypothesis class $\mathcal{H}$ is PAC-learnable with a learning algorithm $A$ if for any
+    distribution $\mathcal{D}$, and any $\epsilon > 0$ and $0 \leq \delta \leq 1$, there exists
     $N > 0$ such that for any $n \geq N$:
     $$
-    \mathbb{P}_{S \sim \mathcal{D}^n} \left[ L_{\mathcal D }(A(S)) - \min_{h' \in \mathcal{H}} L_{\mathcal{D}}(h') > \epsilon \right] < \delta 
-    $$ 
+    \mathbb{P}_{S \sim \mathcal{D}^n} \left[ L_{\mathcal D }(A(S)) - \min_{h' \in \mathcal{H}} L_{\mathcal{D}}(h') > \epsilon \right] < \delta
+    $$
     In other words, with high probability, the program learned by $A$ achieves a similar error to the best program in $\mathcal{H}$.
 }
 \wde{Empirical Risk Minimisation (ERM)}{
-    Minimising the loss on a training set is also known as empirical risk minimisation 
+    Minimising the loss on a training set is also known as empirical risk minimisation
     $$
         A_{ERM, \mathcal{H}(s)} = h_{ERM} = \argmin_{h \in \mathcal{H}} L_S(h)
     $$
 }
 \wt{No free lunch theorem}{
-    Suppose $|\mathcal{X}| = 2m$. For any learning algorithm $A$, there is a distribution $\mathcal{D}$ and 
-    $f : \mathcal{X} \to \{0,1\}$ such that $L_\mathcal{D}(f) = 0$, but 
+    Suppose $|\mathcal{X}| = 2m$. For any learning algorithm $A$, there is a distribution $\mathcal{D}$ and
+    $f : \mathcal{X} \to \{0,1\}$ such that $L_\mathcal{D}(f) = 0$, but
     $$
         \mathbb{P}_{S \sim \mathcal{D}^m} \left[ L_{\mathcal{D}}(A(S)) \geq \frac{1}{10} \right] \geq \frac{1}{10}
     $$
 }
 \wt{Error Decomposition}{
     $$
-    \L_{\mathcal{D}}(h) = \underbrace{L_{\mathcal{D}}(h) - \min_{h' \in \mathcal{H}} L_{\mathcal{D}}(h')}_{\text{Estimation Error}} + \underbrace{\min_{h' \in \mathcal{H}} L_{\mathcal{D}}(h') - L_S(h)}_{\text{Approximation Error}} 
+    L_{\mathcal{D}}(h) = \underbrace{L_{\mathcal{D}}(h) - \min_{h' \in \mathcal{H}} L_{\mathcal{D}}(h')}_{\text{Estimation Error}} + \underbrace{\min_{h' \in \mathcal{H}} L_{\mathcal{D}}(h') - L_S(h)}_{\text{Approximation Error}}
     $$
 }
 \wde{Uniform Convergence}{
-    A hypothesis class $\mathcal{H}$ has uniform convergence property if for any distribution 
+    A hypothesis class $\mathcal{H}$ has uniform convergence property if for any distribution
     $\mathcal{D}$, and any $\epsilon > 0$ and $0 \leq \delta \leq 1$, there exists $N > 0$ such that for any $n \geq N$ and every $h \in \mathcal{H}$:
     $$
     \mathbb{P}_{S \sim \mathcal{D}^n} \left[ |L_{S}(h) - L_{\mathcal{D}}(h)| > \epsilon \right] < \delta
@@ -63,9 +63,13 @@
 }
 \wt{Uniform Convergence implies PAC learnability}{
     If a hypothesis class $\mathcal{H}$ has the uniform convergence property, then it is PAC learnable with ERM.
+    proof:
+    $$
+    L_{\mathcal{D}}(h_{ERM}) \leq L_S(h_{ERM}) + \epsilon \leq L_S(h) + \epsilon \leq L_{\mathcal{D}}(h) + \epsilon + \epsilon
+    $$
 }
 \wde{Shattering}{
-    A set of $n$ points is shattered by $\mathcal{H}$ if there is an arrangement of $n$ points such 
+    A set of $n$ points is shattered by $\mathcal{H}$ if there is an arrangement of $n$ points such
     that classifiers in $\mathcal{H}$ can produce all $2^n$ ways of labelling the points.
 }
 \wde{Vapnik-Chervonenkis (VC) Dimension}{
@@ -91,7 +95,7 @@
     Cross entropy or log likelihood are common surrogate losses for 0-1 loss.
 }
 \wde{Underfitting}{
-    A model $h$ is underfitting if there is another model $f$ that has a lower training i.e. 
+    A model $h$ is underfitting if there is another model $f$ that has a lower training i.e.
     $L_S(f) < L_S(h)$.
 }
 \wde{Overfitting}{
@@ -103,7 +107,7 @@
 }
 \wde{Stability}{
     A learning algorithm is stable if the learned program does not change much in
-    performance when we change the data set slightly. 
+    performance when we change the data set slightly.
 }
 \wt{Stability prevents Overfitting}{
     Stable learning algorithms don't overfit
@@ -124,7 +128,7 @@
 }
 \wde{Hardness of Optimising Neural Networks}{
     Training a 2-layer 3 node neural network is NP-complete.
-    If we could minimise the loss function in polynomial time, then we would 
+    If we could minimise the loss function in polynomial time, then we would
     be able to solve the P=NP problem.
 }
 \wde{Overparameterisation}{
