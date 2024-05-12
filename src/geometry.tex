@@ -51,6 +51,14 @@ $$}
 \wde{Plane}{
     A plane is a set of points $$\{ x : \dotp{v}{x-u} = 0 \}$$ where $v$ is the normal vector to the plane and $u$ is the shift from the origin.
 }
+
+\wde{Angle between two vectors}{
+    The angle $\theta$ between two vectors $u$ and $v$ is given by
+    $$
+    \cos \theta = \frac{\dotp{u}{v}}{\norm{u}\norm{v}}
+    $$
+}
+
 \wde{Projection}{
     The vector $\norm{u}\cos \theta \frac{v}{\norm{v}}$ is a projection of $u$ onto $v$. 
     % let's use tikz to draw this 
@@ -102,4 +110,9 @@ $$}
     $$
     \min_{Z,W} \frobnorm{X - ZW} \text{ s.t. } Z \in \mathbb{R}^{n \times k}, W \in \mathbb{R}^{k \times d}
     $$
+}
+\wt{Useful Identities}{
+    \begin{itemize}
+        \item $A(\dotp{A}{A})^{-1} = (AA^T)^{-1}A^T$
+    \end{itemize}
 }
