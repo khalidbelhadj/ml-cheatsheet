@@ -29,6 +29,7 @@
         \item \normalfont Given a function $f(a) = \dotp{b}{a}$, $(\nabla f)(a) = b$ 
         \item Given a function $f(a) = \norm{a}^2$, $(\nabla f)(a) = 2a$
         \item Given a function $f(a) = \dotp{a}{Aa}$, $(\nabla f)(a) = (A + A^T)a$
+        \item If $A$ is symmetric and $f(a) = \dotp{a}{Aa}$, $(\nabla f)(a) = 2Aa$
     \end{itemize}
 }
 \wde{Hessian}{
@@ -51,4 +52,12 @@
     \end{bmatrix}
     $$
     The 2 indicates that it looks like a cup along the $x$-axis and the -2 indicates that it looks like an upside-down cup along the $y$-axis.
+}
+
+\we{Calculus Rules}{
+    \begin{itemize}
+        \item \normalfont \textbf{Product Rule:} $(fg)' = f'g + fg'$
+        \item \textbf{Quotient Rule:} $\left(\frac{f}{g}\right)' = \frac{f'g - fg'}{g^2}$
+        \item \textbf{Chain Rule:} $(f(g(x)))' = f'(g(x))g'(x)$
+    \end{itemize}
 }

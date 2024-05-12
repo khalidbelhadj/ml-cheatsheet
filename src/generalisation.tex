@@ -68,6 +68,15 @@
     L_{\mathcal{D}}(h_{ERM}) \leq L_S(h_{ERM}) + \epsilon \leq L_S(h) + \epsilon \leq L_{\mathcal{D}}(h) + \epsilon + \epsilon
     $$
 }
+
+\wde{Sample Complexity}{
+    How many samples are needed to guarantee a certain error approximation.
+    $$
+    \sqrt{\frac{C(\mathcal{H})}{n}} + \sqrt{\frac{\log(1/\delta)}{2n}} \leq \epsilon
+    $$
+    where $$n = O\left(\frac{C(\mathcal{H}) + \log(1/\delta)}{\epsilon^2}\right)$$
+}
+
 \wde{Shattering}{
     A set of $n$ points is shattered by $\mathcal{H}$ if there is an arrangement of $n$ points such
     that classifiers in $\mathcal{H}$ can produce all $2^n$ ways of labelling the points.
@@ -82,14 +91,26 @@
     L_{\mathcal{D}}(h) \leq L_S(h) + 2 \sqrt{\frac{8d \log (en/d) + 2 \log(4/\delta)}{n}}
     $$
     d is the VC dimension of $\mathcal{H}$.
+    When $\mathcal{H}$ is large, $d$ is large and $\min_{h \in \mathcal{H}} L_{\mathcal{S}}(h)$ is small.
+    So the distance between the generalisation error and the training error increases.
 }
+
 \we(VC Dimension){
     \begin{itemize}
         \item For linear classifers, $\VC(\mathcal{H}_{lin}) = p + 1$
-        % \item For polynomial classifiers of degree $p$, $\VC(\mathcal{H}_{poly}) = \binom{p+d}{d}$
         \item For MLP with $p$ edges, $\VC(\mathcal{H}_{mlp}) = O(p\log p)$
     \end{itemize}
 }
+
+\wde{Capacity-Generalisation Tradeoff}{
+    The capacity of a hypothesis class could be something like the VC dimension.
+    There is a tradeoff to be made between the capacity of the hypothesis class and the generalisation error.
+    As the capacity of the hypothesis class increases, the approximation error decreases but the estimation error increases.
+    \begin{center}
+        \includegraphics[width=0.5\linewidth]{images/gen-bound.png}
+    \end{center}
+}
+
 \wde{Surrogate Loss}{
     A surrogate loss is a loss function that is easier to optimise than the original loss function.
     Cross entropy or log likelihood are common surrogate losses for 0-1 loss.

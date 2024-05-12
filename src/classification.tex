@@ -116,6 +116,17 @@
         is positive semi-definite
     \end{itemize}
 }
+\wde{Making Kernels from Kernels}{
+    Let $k_1, k_2, k_3$ be kernels, then the following are also kernels:
+    \begin{itemize}
+        \item $k(x,z) = k_1(x,z) + k_2(x,z)$
+        \item $k(x,z) = ak_1(x,z)$ \quad \text{for } a > 0
+        \item $k(x,z) = k_1(x,z)k_2(x,z)$
+        \item $k(x,z) = f(x)f(z)$ \quad \text{for } $f : \mathbb{R}^d \to \mathbb{R}$
+        \item $k(x,z) = k_3(\phi(x), \phi(z))$
+        \item $k(x,z) = \dotp{x}{Bz}$ \quad \text{where } B \text{ is a $n\times n$ matrix}
+    \end{itemize}
+}
 
 \wt{Mercer's Theorem}{
     Supoose $k$ is a continuous symmetric non-negative definite kernel, then $k$ can be expressed as 
