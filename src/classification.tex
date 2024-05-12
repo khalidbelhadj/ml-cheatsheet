@@ -8,13 +8,17 @@
 \wde{Training of Classification}{
     Find parameters $\theta$ such that the zero-one loss is minimised
 }
-\wde{Logistic Regression}{
-    A linear classifier that models the probability of a class label.
+\wde{Logistic Regression (binary)}{
+    A linear classifier that models the probability of a binary class label.
     The model is given by
     $$
     p(y|x, \theta) = \sigma(-y\theta^Tx) = \frac{1}{1 + \exp(-y (\dotp{w}{x} + b))}
     $$
     where $\sigma$ is the sigmoid function.
+    The classification is done by
+    $$
+    h(x) = \sgn({\dotp{w}{x} + b})
+    $$
 }
 \wde{Maximum Likelihood Estimation (MLE)}{
     The MLE of the parameters $\theta$ is given by
@@ -44,7 +48,21 @@
     \operatorname{softmax}\left( \begin{bmatrix} z_1 \\ z_2 \\ \vdots \\ z_k \end{bmatrix} \right) = \begin{bmatrix} \frac{e^{z_1}}{\sum_{i=1}^k e^{z_i}} \\ \frac{e^{z_2}}{\sum_{i=1}^k e^{z_i}} \\ \vdots \\ \frac{e^{z_k}}{\sum_{i=1}^k e^{z_i}} \end{bmatrix}
     $$
 }
-\wde{Support Vector Machine (SVM)}{
+\wde{Logistic Regression (multiclass)}{
+    The model is given by
+    $$
+    p(y|x, \theta) = \frac{
+        \exp(\theta_y^Tx)
+    }{
+        \sum_{i=1}^k \exp(\theta_i^Tx)
+    }
+    $$
+    The classification is done by
+    $$
+    h(x) = \argmax_{y} \theta_y^Tx
+    $$
+}
+\wde{Support Vector Machine (SVM) (hard margin)}{
     A linear classifier that finds the hyperplane that maximises the margin between the classes. It 
     does so by solving the following optimisation problem:
     $$
@@ -54,6 +72,21 @@
     $$
     L(\alpha, w) = \frac{1}{2} \norm{w}^2 - \sum_{i=1}^n \alpha_i(y_i(w^Tx_i + b) - 1)
     $$
+    Solving the lagrangian yields 
+    $$
+    w = \sum_{i=1}^n \alpha_i y_i \cdot \overbrace{x_i}^{\text{support vectors}}
+    $$
+    The classification is done by 
+    $$
+    h(x) = \sgn(w^Tx + b) = \sgn\left( \sum_{i=1}^n \alpha_i y_i x_i^Tx + b \right)
+    $$
+}
+\wde{SVM (soft margin)}{
+    Add tolerance to the margin to allow for misclassification. The optimisation problem becomes
+    $$
+    \min_{w, b} (\dotp{w}{w} + C \sum_{i=1}^n \xi_i) \quad \text{s.t.} \quad y_i(\dotp{w}{x_i} + b) \geq 1 - \xi_i
+    $$
+    The constraint is also known as the hinge loss so when solving the lagrangian
 }
 \wde{Kernel}{
     A kernel $k : \mathbb{R}^d \times \mathbb{R}^d \to \mathbb{R}$ is defined as 
